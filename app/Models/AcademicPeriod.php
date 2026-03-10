@@ -11,10 +11,9 @@ class AcademicPeriod extends Model
     /** @use HasFactory<\Database\Factories\AcademicPeriodFactory> */
     use HasFactory;
     protected $fillable = [
-        'course_id',
+        'name',
+        'start_date',
+        'end_date',
+        'status',
     ];
-    public function course()
-    {
-        return $this->belongsTo(Course::class);
-    }
 }

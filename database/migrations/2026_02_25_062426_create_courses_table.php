@@ -11,22 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enrollments', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('code')->unique();
+            $table->text('description')->nullable();
+            $table->unsignedTinyInteger('credits');
 
-            $table->date('enrollment_date');
-            $table->enum('status', ['inscrito', 'retirado', 'finalizado'])
-                ->default('inscrito');
-            $table->decimal('final_average', 5, 2)->nullable();
-            $table->foreignId('student_id')
-                ->constrained()
-                ->onDelete('cascade');
-            $table->foreignId('course_id')
+            $table->foreignId('teacher_id')
                 ->constrained()
                 ->onDelete('cascade');
 
-            // Evita que un estudiante se inscriba dos veces en el mismo curso
-            $table->unique(['student_id', 'course_id']);
+            $table->foreignId('academic_periods_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->unsignedInteger('capacity')->nullable();
+
+            $table->enum('status', ['active', 'inactive'])
+                ->default('active');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enrollments');
+        Schema::dropIfExists('courses');
     }
 };

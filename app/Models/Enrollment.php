@@ -4,30 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Course;
 use App\Models\Student;
+use App\Models\Course;
 use App\Models\Grade;
 
 class Enrollment extends Model
 {
-    /** @use HasFactory<\Database\Factories\EnrollmentFactory> */
     use HasFactory;
     protected $fillable = [
         'student_id',
         'course_id',
-        'grade_id',
     ];
+
     public function student()
     {
         return $this->belongsTo(Student::class);
     }
+
     public function course()
     {
         return $this->belongsTo(Course::class);
     }
+
     public function grade()
     {
-        return $this->belongsTo(Grade::class);
+        return $this->hasMany(Grade::class);
     }
-
 }

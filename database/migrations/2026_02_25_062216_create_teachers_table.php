@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->string('employee_code')->unique();
+            $table->string('specialty');
+            $table->date('hire_date');
+            $table->enum('status', ['active', 'inactive'])
+                ->default('active');
+//            $table->foreignId('user_id')
+//                ->unique()
+//                ->constrained()
+//                ->onDelete('cascade');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

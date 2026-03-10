@@ -4,17 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Course;
 
 class Teacher extends Model
 {
-    /** @use HasFactory<\Database\Factories\TeacherFactory> */
     use HasFactory;
     protected $fillable = [
-        'course_id',
+        // Define any fillable attributes for the Teacher model here
     ];
-    public function course()
-    {
-        return $this->hasMany(Course::class);
-    }
 }

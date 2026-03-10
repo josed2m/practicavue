@@ -7,19 +7,6 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
-const showingNavigationDropdown = ref(false);
-const variants = ['elevated', 'flat', 'tonal', 'outlined']
-const color = ref('indigo')
-
-const links = [
-    'Home',
-    'About Us',
-    'Team',
-    'Services',
-    'Blog',
-    'Contact Us',
-  ]
-
 </script>
 
 <template>
@@ -207,72 +194,6 @@ const links = [
             </main>
         </div>
     </div>
-<v-row class="justify-center">
-    <v-col cols="auto">
-      <v-radio-group
-        v-model="color"
-        hide-details
-        inline
-      >
-        <v-radio
-          color="indigo"
-          label="indigo"
-          value="indigo"
-        ></v-radio>
-
-        <v-radio
-          color="indigo-darken-3"
-          label="indigo-darken-3"
-          value="indigo-darken-3"
-        ></v-radio>
-
-        <v-radio
-          color="primary"
-          label="primary"
-          value="primary"
-        ></v-radio>
-
-        <v-radio
-          color="secondary"
-          label="secondary"
-          value="secondary"
-        ></v-radio>
-      </v-radio-group>
-    </v-col>
-
-    <v-col
-      v-for="(variant, i) in variants"
-      :key="i"
-      cols="12"
-      md="6"
-    >
-      <v-card
-        :color="color"
-        :variant="variant"
-        class="mx-auto"
-      >
-        <v-card-item>
-          <div>
-            <div class="text-label-medium text-uppercase mt-2 mb-3">
-              {{ variant }}
-            </div>
-            <div class="text-title-large mb-1">
-              Headline
-            </div>
-            <div class="text-body-small">Greyhound divisely hello coldly fonwderfully</div>
-          </div>
-        </v-card-item>
-
-        <v-card-actions>
-          <v-btn>
-            Button
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
-
-
  <v-card>
     <v-layout>
       <v-navigation-drawer
@@ -291,17 +212,18 @@ const links = [
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
-
-       
-    <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="students"></v-list-item>
-
-
-
-         
-    <v-list-item prepend-icon="mdi-account-tie" title="Catedratico" value="Docentes"></v-list-item>
-      
-           
-    <v-list-item prepend-icon="mdi-book" title="Cursos" value="Cursos"></v-list-item>
+        <Link :href="route('students.index')" class="text-decoration-none">
+        <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="students"></v-list-item>
+        </Link>
+        <Link :href="route('teachers.index')" class="text-decoration-none">
+        <v-list-item prepend-icon="mdi-account" title="Docentes" value="teachers"></v-list-item>
+        </Link>
+        <Link :href="route('courses.index')" class="text-decoration-none">
+        <v-list-item prepend-icon="mdi-book" title="Cursos" value="courses"></v-list-item>
+        </Link>
+        <Link :href="route('enrollments.index')" class="text-decoration-none">
+        <v-list-item prepend-icon="mdi-pencil" title="Inscripciones" value="enrollments"></v-list-item>
+        </Link>
       
         </v-list>
       </v-navigation-drawer>
@@ -309,21 +231,4 @@ const links = [
       <v-main style="height: 250px"></v-main>
     </v-layout>
   </v-card>
-
-
-  
-<v-footer class="d-flex align-center justify-center ga-2 flex-wrap flex-grow-1 py-3" color="surface-light">
-    <v-btn
-      v-for="link in links"
-      :key="link"
-      :text="link"
-      variant="text"
-      rounded
-    ></v-btn>
-
-    <div class="flex-1-0-100 text-center mt-2">
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-    </div>
-  </v-footer>
-
 </template>

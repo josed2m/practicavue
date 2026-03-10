@@ -8,11 +8,12 @@ use App\Models\Enrollment;
 
 class Grade extends Model
 {
-    /** @use HasFactory<\Database\Factories\GradeFactory> */
     use HasFactory;
     protected $fillable = [
         'enrollment_id',
+        'grade',
     ];
+    
     public function enrollment()
     {
         return $this->belongsTo(Enrollment::class);

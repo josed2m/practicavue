@@ -3,21 +3,19 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Faculty;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Student>
- */
 class StudentFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            //
+            'student_code' => 'STU-' . $this->faker->unique()->numberBetween(1000,9999),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'semester' => $this->faker->numberBetween(1, 12),
+            'status' => $this->faker->randomElement(['active','inactive']),
+            'faculty_id' => Faculty::inRandomOrder()->first()->id, // 🔥 AQUÍ ESTÁ LA CLAVE
         ];
     }
 }

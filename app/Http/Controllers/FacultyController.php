@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class StudentController extends Controller
+class FacultyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +14,12 @@ class StudentController extends Controller
     public function index()
     {
         //
-        
-        $estudiantes = Student::all();
-        dd($estudiantes);
+        $faculties = Faculty::all();
+        dd($faculties);
 
-        return Inertia::render('Student/Index',[
-            'estudiantes' => $estudiantes
+        return Inertia::render('Faculties/Index',[
+            'faculties' => $faculties
         ]);
-        
     }
 
     /**
@@ -30,7 +28,6 @@ class StudentController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Student/Create');
     }
 
     /**
@@ -44,7 +41,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(Faculty $faculty)
     {
         //
     }
@@ -52,7 +49,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit(Faculty $faculty)
     {
         //
     }
@@ -60,7 +57,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Faculty $faculty)
     {
         //
     }
@@ -68,7 +65,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Faculty $faculty)
     {
         //
     }
